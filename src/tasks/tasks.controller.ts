@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { TaskStatus } from './dto/task-status.enum';
-import { CreateTaskDto } from './dto/create-task.dto';
+import { TaskDto, CreateTaskDto } from './dto/task.dto';
 import { Task } from './dto/task.entity';
 
 @Controller('tasks')
@@ -17,30 +17,25 @@ export class TasksController {
   constructor(private tasksService: TasksService) {}
 
   @Get('/')
-  getAllTasks(): Promise<Task[]> {
+  getAllTasks(): Promise<TaskDto[]> {
     return this.tasksService.getAllTasks();
   }
 
   @Get('/:Id')
-  getTaskById(@Param('Id') Id: string): Promise<Task> {
+  getTaskById(@Param('Id') Id: string): Promise<TaskDto> {
     return this.tasksService.getTaskById(Id);
   }
 
   @Post('/')
-  createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+  createTask(@Body() createTaskDto: CreateTaskDto): Promise<TaskDto> {
     return this.tasksService.createTask(createTaskDto);
   }
-
-  // @Delete('/:Id')
-  // deleteTask(@Param('Id') Id: string) {
-  //   return this.tasksService.deleteTaskById(Id);
-  // }
 
   @Patch('/:id/status')
   UpdateTaskStatus(
     @Param('id') id: string,
     @Body('status') status: TaskStatus,
-  ): Promise<Task> {
+  ): Promise<TaskDto> {
     return this.tasksService.updateTaskStatus(id, status);
   }
 }

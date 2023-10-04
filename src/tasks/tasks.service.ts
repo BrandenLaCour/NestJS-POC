@@ -1,7 +1,7 @@
 import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { TaskStatus } from './dto/task-status.enum';
 import { v4 as uuid } from 'uuid';
-import { CreateTaskDto } from './dto/create-task.dto';
+import { CreateTaskDto } from './dto/task.dto';
 import { Task } from './dto/task.entity';
 
 @Injectable()
@@ -30,11 +30,6 @@ export class TasksService {
     }
     return task;
   }
-
-  // deleteTaskById(id: string): void {
-  //   const index: number = this.tasks.findIndex((task) => task.id === id);
-  //   this.tasks.splice(index, 1);
-  // }
 
   async updateTaskStatus(id: string, status: TaskStatus): Promise<Task> {
     const task: Task = await this.taskRepository.findByPk(id);

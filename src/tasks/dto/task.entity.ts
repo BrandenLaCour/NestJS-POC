@@ -14,5 +14,8 @@ export class Task extends Model {
   description: string;
 
   @Column
+  isImportant: boolean;
+
+  @Column
   status: TaskStatus;
 }
