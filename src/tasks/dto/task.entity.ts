@@ -13,8 +13,8 @@ export class Task extends Model {
   @Column
   description: string;
 
-  @Column
-  isImportant: boolean;
+  // @Column
+  // isImportant: boolean;
 
   @Column
   status: TaskStatus;

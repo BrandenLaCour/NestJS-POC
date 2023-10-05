@@ -10,10 +10,10 @@ import {
 import { TasksService } from './tasks.service';
 import { TaskStatus } from './dto/task-status.enum';
 import { TaskDto, CreateTaskDto } from './dto/task.dto';
-import { Task } from './dto/task.entity';
 
 @Controller('tasks')
 export class TasksController {
+  //inject the task service via constructor here
   constructor(private tasksService: TasksService) {}
 
   @Get('/')

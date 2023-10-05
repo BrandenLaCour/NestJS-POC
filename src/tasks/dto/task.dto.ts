@@ -8,8 +8,8 @@ export class TaskDto {
   title: string;
   @IsString()
   description: string;
-  @IsBoolean()
-  isImportant: boolean;
+  // @IsBoolean()
+  // isImportant: boolean;
   @IsNotEmpty()
   status: TaskStatus;
 }
