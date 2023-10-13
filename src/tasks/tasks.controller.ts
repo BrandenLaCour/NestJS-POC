@@ -21,21 +21,21 @@ export class TasksController {
     return this.tasksService.getAllTasks();
   }
 
-  @Get('/:Id')
-  getTaskById(@Param('Id') Id: string): Promise<TaskDto> {
-    return this.tasksService.getTaskById(Id);
-  }
+  // @Get('/:Id')
+  // getTaskById(@Param('Id') Id: string): Promise<TaskDto> {
+  //   return this.tasksService.getTaskById(Id);
+  // }
 
   @Post('/')
   createTask(@Body() createTaskDto: CreateTaskDto): Promise<TaskDto> {
     return this.tasksService.createTask(createTaskDto);
   }
 
-  @Patch('/:id/status')
-  UpdateTaskStatus(
-    @Param('id') id: string,
-    @Body('status') status: TaskStatus,
-  ): Promise<TaskDto> {
-    return this.tasksService.updateTaskStatus(id, status);
-  }
+  // @Patch('/:id/status')
+  // UpdateTaskStatus(
+  //   @Param('id') id: string,
+  //   @Body('status') status: TaskStatus,
+  // ): Promise<TaskDto> {
+  //   return this.tasksService.updateTaskStatus(id, status);
+  // }
 }

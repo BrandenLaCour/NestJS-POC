@@ -1,21 +1,27 @@
-import { Table, Column, Model, Unique, PrimaryKey } from 'sequelize-typescript';
+import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { v4 as uuidv4 } from 'uuid';
 import { TaskStatus } from './task-status.enum';
 
-@Table
-export class Task extends Model {
-  @PrimaryKey
-  @Column
-  id: string;
+@Entity()
+export class Task {
+  @PrimaryKey()
+  id: string = this.generateUuid();
 
-  @Column
-  title: string;
+  @Property()
+  title!: string;
 
-  @Column
-  description: string;
+  @Property()
+  description!: string;
 
-  // @Column
-  // isImportant: boolean;
+  @Property()
+  status: TaskStatus = TaskStatus.OPEN;
 
-  @Column
-  status: TaskStatus;
+  constructor(title: string, description: string) {
+    this.title = title;
+    this.description = description;
+  }
+
+  private generateUuid(): string {
+    return uuidv4();
+  }
 }
