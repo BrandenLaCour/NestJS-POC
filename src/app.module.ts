@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
-import { TasksModule } from './tasks/tasks.module';
+import { ItemsModule } from './items/item.module';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import mikroOrmConfig from './database/mikro-orm.config';
-import { Task } from './tasks/dto/task.entity';
+import { Item } from './items/dto/item.entity';
 
 @Module({
   imports: [
-    TasksModule,
+    ItemsModule,
     MikroOrmModule.forRoot(mikroOrmConfig),
-    MikroOrmModule.forFeature({ entities: [Task] }),
+    MikroOrmModule.forFeature({ entities: [Item] }),
   ],
 })
 export class AppModule {}

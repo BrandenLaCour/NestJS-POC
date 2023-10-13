@@ -1,4 +1,4 @@
-import { Task } from './dto/task.entity';
+import { Task } from './dto/item.entity';
 
 export const taskProviders = [
   {

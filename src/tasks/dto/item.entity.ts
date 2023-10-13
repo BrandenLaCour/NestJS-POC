@@ -1,24 +1,24 @@
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 import { v4 as uuidv4 } from 'uuid';
-import { TaskStatus } from './task-status.enum';
+import { ItemStatus } from './item-status.enum';
 
 @Entity()
-export class Task {
+export class Item {
   @PrimaryKey()
   id: string = this.generateUuid();
 
   @Property()
-  title!: string;
+  name!: string;
 
   @Property()
-  description!: string;
+  price!: number;
 
   @Property()
-  status: TaskStatus = TaskStatus.OPEN;
+  status: ItemStatus = ItemStatus.READY;
 
-  constructor(title: string, description: string) {
-    this.title = title;
-    this.description = description;
+  constructor(name: string, price: number) {
+    this.name = name;
+    this.price = price;
   }
 
   private generateUuid(): string {

@@ -1,24 +1,23 @@
 import { Injectable, Inject, NotFoundException } from '@nestjs/common';
-import { TaskStatus } from './dto/task-status.enum';
+import { ItemStatus } from './dto/item-status.enum';
 import { v4 as uuid } from 'uuid';
-import { CreateTaskDto } from './dto/task.dto';
-import { Task } from './dto/task.entity';
+import { CreateItemDto } from './dto/item.dto';
+import { Item } from './dto/item.entity';
 import { EntityManager } from '@mikro-orm/mysql';
 
 @Injectable()
-export class TasksService {
+export class ItemService {
   constructor(private em: EntityManager) {}
 
-  async getAllTasks(): Promise<Task[]> {
-    return this.em.find(Task, {});
+  async getAllItems(): Promise<Item> {
+    return this.em.find(Item, {});
   }
 
-  async createTask(createTaskDto: CreateTaskDto): Promise<Task> {
-    const { title, description } = createTaskDto;
-    const task = new Task(title, description);
-    await this.em.persistAndFlush(task);
-    return task;
-  }
+  async createItem(createItemDto: CreateItemDto): Promise<Item> {
+    const { name, price } = createItemDto;
+    const item = new Item(name, price);
+    await this.em.persistAndFlush(item);
+    return item;
 
   // async getTaskById(id: string): Promise<Task | null> {
   //   const task: Task = await this.taskRepository.findOne({ where: { id } });
