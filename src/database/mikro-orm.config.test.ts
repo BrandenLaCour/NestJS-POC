@@ -6,7 +6,7 @@ import { Item } from '../items/dto/item.entity';
 
 const config: Options = {
   type: 'postgresql',
-  dbName: 'item-prices',
+  dbName: 'item_prices_test', //psql didnt like my dashes
   user: 'postgres',
   password: 'postgres',
   host: 'localhost',

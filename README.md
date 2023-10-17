@@ -1,51 +1,28 @@
 ## Description
 
-A POC just to get a feel for working with Nest JS and Sequelize. Using a fake task management system.
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Testing setup with Mikro ORM and Nest
 
 ## Installation
 
-```bash
-$ yarn install
-```
+brew install postgresql
 
-## Running the app
+Setup and teardown Info:
 
-```bash
-# development
-$ yarn run start
+psql -U postgres -c 'create database testItemPrices;' (create db)
+psql -U postgres -c 'drop database testItemPrices;' (teardown db)
 
-# watch mode
-$ yarn run start:dev
+Install jest:
 
-# production mode
-$ yarn run start:prod
-```
+yarn add --dev jest @nestjs/jest
 
-## Test
+Make sure to update package .json jest config to look for test files properly depending on test file naming convention:
+"testRegex": ".\*\\.e2e-spec\\.ts$",
 
-```bash
-# unit tests
-$ yarn run test
+Also make sure to specify where to find the tests:
+"rootDir": "test",
 
-# e2e tests
-$ yarn run test:e2e
+Give executable permissions to shell scripts
+chmod +x init-db.sh
+chmod +x teardown-db.sh
 
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+run ./init-db.sh or ./teardown-db.sh to create/seed or drop test db.
