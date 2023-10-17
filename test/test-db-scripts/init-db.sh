@@ -7,7 +7,7 @@ psql -U "$DB_USER" -h "$DB_HOST" -p "$DB_PORT" -c "CREATE DATABASE $DB_NAME;"
 # Seed some sample data into the "item" table
 psql -U $DB_USER -d $DB_NAME << EOF
 CREATE TABLE item (
-  id SERIAL PRIMARY KEY,
+  id VARCHAR(255) PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   price NUMERIC(10, 2) NOT NULL,
   status VARCHAR(255) NOT NULL
