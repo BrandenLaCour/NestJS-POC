@@ -5,17 +5,21 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Item } from '../../src/items/dto/item.entity';
 import { CreateItemDto } from 'src/items/dto/item.dto';
 import { ItemService } from '../../src/items/item.service';
+import config from '../../src/database/mikro-orm.config.test';
+import { execSync } from 'child_process';
 
 describe('ItemService', () => {
   let module: TestingModule;
   let itemService: ItemService;
 
   beforeAll(async () => {
+    // Possibly call script to seed/sync db here
+
     module = await Test.createTestingModule({
       imports: [
         MikroOrmModule.forRootAsync({
           useFactory: () => ({
-            ...require('../../src/database/mikro-orm.config.test').default,
+            ...config,
             entities: [Item],
           }),
         }),
@@ -40,17 +44,15 @@ describe('ItemService', () => {
     };
 
     const newItem: Item = await itemService.createItem(newItemData);
-
-    // Act: Retrieve the item by its ID
     const retrievedItem: Item = await itemService.getItemById(newItem.id);
 
-    // Assert: Check if the retrieved item matches the created item
     expect(retrievedItem).toBeDefined();
     expect(retrievedItem!.id).toBe(newItem.id);
     expect(retrievedItem!.name).toBe('Test Item');
   });
 
   afterAll(async () => {
+    // possibly call script to reset db here.
     await module.close();
   });
 });

@@ -3,7 +3,7 @@ import { ItemStatus } from './dto/item-status.enum';
 import { v4 as uuid } from 'uuid';
 import { CreateItemDto } from './dto/item.dto';
 import { Item } from './dto/item.entity';
-import { EntityManager } from '@mikro-orm/mysql';
+import { EntityManager } from '@mikro-orm/core';
 
 @Injectable()
 export class ItemService {
